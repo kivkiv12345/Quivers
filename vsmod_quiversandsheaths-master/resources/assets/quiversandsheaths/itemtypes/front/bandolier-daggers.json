@@ -1,0 +1,294 @@
+{
+  "code": "frontbag",
+  "class": "Item",
+  "tags": [
+    "front-bag"
+  ],
+  "variantgroups": [
+    {
+      "code": "category",
+      "states": [
+        "front"
+      ]
+    },
+    {
+      "code": "subtype",
+      "states": [
+        "bandolier"
+      ]
+    },
+    {
+      "code": "type",
+      "states": [
+        "daggers"
+      ]
+    }
+  ],
+  "shape": {
+    "base": "quiversandsheaths:frontbag/empty/bandolier_daggers"
+  },
+  "texturesByType": {
+    "*": {
+      "seraph": {
+        "base": "game:block/transparent"
+      }
+    }
+  },
+  "storageFlags": 128,
+  "behaviors": [
+    {
+      "name": "QuiversAndSheaths:Sheath",
+      "properties": {
+        "toolSlot": {
+          "slotColor": "#61c8ff",
+          "canHoldWildcards": [
+            "armory:dagger-*",
+            "*:dagger-*"
+          ],
+          "canHoldItemTags": [
+            "dagger"
+          ],
+          "slotsIcon": "quiversandsheaths:knife",
+          "SlotBackpackCategory": "weapon-tool",
+          "HandleHotkey": true
+        },
+        "slots": [
+          {
+            "canHoldWildcards": [
+              "armory:dagger-*",
+              "*:dagger-*"
+            ],
+            "canHoldItemTags": [
+              "dagger"
+            ],
+            "slotColor": "#969350",
+            "slotsNumber": 1,
+            "slotsIcon": "quiversandsheaths:knife",
+            "SlotBackpackCategory": "ammunition",
+            "DisplayInToolDialog": true,
+            "SetVariants": true,
+            "SlotVariant": "dagger_slot_1",
+            "SlotStateVariant": "dagger_slot_state_1"
+          },
+          {
+            "canHoldWildcards": [
+              "armory:dagger-*",
+              "*:dagger-*"
+            ],
+            "canHoldItemTags": [
+              "dagger"
+            ],
+            "slotColor": "#969350",
+            "slotsNumber": 1,
+            "slotsIcon": "quiversandsheaths:knife",
+            "SlotBackpackCategory": "ammunition",
+            "DisplayInToolDialog": true,
+            "SetVariants": true,
+            "SlotVariant": "dagger_slot_2",
+            "SlotStateVariant": "dagger_slot_state_2"
+          },
+          {
+            "canHoldWildcards": [
+              "armory:dagger-*",
+              "*:dagger-*"
+            ],
+            "canHoldItemTags": [
+              "dagger"
+            ],
+            "slotColor": "#969350",
+            "slotsNumber": 1,
+            "slotsIcon": "quiversandsheaths:knife",
+            "SlotBackpackCategory": "ammunition",
+            "DisplayInToolDialog": true,
+            "SetVariants": true,
+            "SlotVariant": "dagger_slot_3",
+            "SlotStateVariant": "dagger_slot_state_3"
+          }
+        ],
+        "takeOutColor": "#999999",
+        "hotkey": {
+          "hotkeyCode": "combatoverhaul-swap-weapon-right-melee",
+          "hotkeyName": "Swap melee weapon (main hand)",
+          "hotkeyKey": "R"
+        },
+        "takeOutSlotIcon": "quiversandsheaths:takeout"
+      }
+    },
+    {
+      "name": "QuiversAndSheaths:ShapeTexturesFromAttributes",
+      "properties": {
+        "addOverlayPrefix": false,
+        "shape": {
+          "dagger_slot_state_1-*::dagger_slot_state_2-*::dagger_slot_state_3-*": {
+            "base": "quiversandsheaths:frontbag/empty/bandolier_daggers",
+            "overlays": [
+              {
+                "base": "quiversandsheaths:frontbag/daggers/{dagger_slot_state_1}/default_1"
+              },
+              {
+                "base": "quiversandsheaths:frontbag/daggers/{dagger_slot_state_2}/default_2"
+              },
+              {
+                "base": "quiversandsheaths:frontbag/daggers/{dagger_slot_state_3}/default_3"
+              }
+            ]
+          },
+          "*": {
+            "base": "quiversandsheaths:frontbag/empty/bandolier_daggers"
+          }
+        },
+        "textures": {
+          "metal-*::leather-*": {
+            "frontbag-0-material": {
+              "base": "game:block/leather/{leather}"
+            },
+            "frontbag-0-metal": {
+              "base": "game:block/metal/plate/{metal}"
+            },
+            "frontbag-1-material": {
+              "base": "game:block/leather/{leather}"
+            },
+            "frontbag-1-metal": {
+              "base": "game:block/metal/plate/{metal}"
+            },
+            "frontbag-2-material": {
+              "base": "game:block/leather/{leather}"
+            },
+            "frontbag-2-metal": {
+              "base": "game:block/metal/plate/{metal}"
+            },
+            "frontbag-3-material": {
+              "base": "game:block/leather/{leather}"
+            },
+            "frontbag-3-metal": {
+              "base": "game:block/metal/plate/{metal}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "QuiversAndSheaths:ShapeReplacement",
+      "properties": {
+        "addOverlayPrefix": false,
+        "renderTargets": [
+          "Gui",
+          "HandTp",
+          "HandTpOff",
+          "Ground"
+        ],
+        "shape": {
+          "*": {
+            "base": "quiversandsheaths:gui/bandolier"
+          }
+        },
+        "textures": {
+          "metal-*::leather-*": {
+            "frontbag-0-material": {
+              "base": "game:block/leather/{leather}"
+            },
+            "frontbag-0-metal": {
+              "base": "game:block/metal/plate/{metal}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "CombatOverhaul:GoesIntoSlotsInfo"
+    }
+  ],
+  "attributes": {
+    "wearableAttachment": true,
+    "clothescategory": "frontgear",
+    "warmthByType": {
+      "*": 0
+    },
+    "handbook": {
+      "groupBy": [
+        "frontbag-{category}-{subtype}-{type}"
+      ]
+    }
+  },
+  "creativeinventory": {
+    "general": [
+      "*"
+    ],
+    "quiversandsheaths": [
+      "*"
+    ]
+  },
+  "creativeinventoryStacks": [
+    {
+      "tabs": [
+        "general",
+        "quiversandsheaths-colors"
+      ],
+      "stacks": [
+        {
+          "type": "item",
+          "code": "frontbag-{category}-{subtype}-{type}"
+        }
+      ]
+    }
+  ],
+  "renderAlphaTest": "0.25",
+  "tpHandTransform": {
+    "translation": {
+      "x": 0,
+      "y": "-0.05",
+      "z": 0
+    },
+    "rotation": {
+      "x": 0,
+      "y": 180,
+      "z": 48
+    },
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "scale": 1
+  },
+  "guiTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "x": 145,
+      "y": -157,
+      "z": 0
+    },
+    "origin": {
+      "x": "0.09",
+      "y": "-0.01",
+      "z": 0
+    },
+    "scaleXyz": {
+      "x": "-3.59",
+      "y": "3.59",
+      "z": "3.59"
+    }
+  },
+  "groundTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "x": 90,
+      "y": 0,
+      "z": 0
+    },
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": "0.1"
+    },
+    "scale": 4
+  }
+}

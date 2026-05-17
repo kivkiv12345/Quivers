@@ -1,0 +1,21 @@
+{
+  "editor": {
+    "allAngles": true,
+    "entityTextureMode": false
+  },
+  "textureWidth": 16,
+  "textureHeight": 16,
+  "textureSizes": {},
+  "textures": {
+    "frontbag-0-material": "game:block/leather/plain",
+    "frontbag-0-metal": "game:block/metal/plate/iron",
+    "frontbag-1-material": "game:block/leather/plain",
+    "frontbag-1-metal": "game:block/metal/plate/iron",
+    "frontbag-2-material": "game:block/leather/plain",
+    "frontbag-2-metal": "game:block/metal/plate/iron",
+    "frontbag-3-material": "game:block/leather/plain",
+    "frontbag-3-metal": "game:block/metal/plate/iron"
+  },
+  "elements": [],
+  "animations": []
+}

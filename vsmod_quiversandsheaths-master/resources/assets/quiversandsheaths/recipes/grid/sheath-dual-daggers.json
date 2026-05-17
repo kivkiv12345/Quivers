@@ -1,0 +1,78 @@
+[
+  {
+    "enabled": true,
+    "ingredientPattern": "LNL,LDL,LLL",
+    "recipeGroup": 1,
+    "ingredients": {
+      "N": {
+        "type": "item",
+        "code": "part-buckle-iron"
+      },
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-plain"
+      },
+      "D": {
+        "type": "item",
+        "code": "armory:dagger-*",
+        "isTool": true,
+        "toolDurabilityCost": 0
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "name": "dual-dagger-sheath",
+    "output": {
+      "type": "item",
+      "code": "beltbag-left-sheath-dualdaggers"
+    }
+  },
+  {
+    "enabled": true,
+    "ingredientPattern": "LNL,LDL,LLL",
+    "recipeGroup": 2,
+    "ingredients": {
+      "N": {
+        "type": "item",
+        "code": "part-buckle-{metal}"
+      },
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-{leather}"
+      },
+      "D": {
+        "type": "item",
+        "code": "armory:dagger-*",
+        "isTool": true,
+        "toolDurabilityCost": 0
+      }
+    },
+    "allowedVariants": {
+      "metal": [
+        "brass",
+        "copper",
+        "tinbronze",
+        "bismuthbronze",
+        "blackbronze",
+        "gold",
+        "silver",
+        "iron",
+        "meteoriciron",
+        "steel"
+      ]
+    },
+    "width": 3,
+    "height": 3,
+    "name": "dual-dagger-sheath",
+    "output": {
+      "type": "item",
+      "code": "beltbag-left-sheath-dualdaggers",
+      "attributes": {
+        "types": {
+          "leather": "{leather}",
+          "metal": "{metal}"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,258 @@
+{
+  "editor": {
+    "allAngles": true,
+    "entityTextureMode": false
+  },
+  "textureWidth": 16,
+  "textureHeight": 16,
+  "textureSizes": {},
+  "textures": {
+    "frontbag-1-material": "game:block/leather/plain",
+    "frontbag-1-metal": "game:block/metal/plate/iron"
+  },
+  "elements": [
+    {
+      "name": "Front_slot1",
+      "stepParentName": "UpperTorso",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        0,
+        0,
+        0
+      ],
+      "faces": {},
+      "children": [
+        {
+          "name": "front_1_slot1",
+          "from": [
+            -0.4,
+            5.4,
+            0
+          ],
+          "to": [
+            0,
+            11.2,
+            1.5
+          ],
+          "rotationOrigin": [
+            -0.4,
+            5.4,
+            0
+          ],
+          "rotationZ": -90,
+          "faces": {},
+          "children": [
+            {
+              "name": "front_2_slot1",
+              "from": [
+                1.4,
+                0,
+                0
+              ],
+              "to": [
+                1.8,
+                1,
+                1.5
+              ],
+              "rotationOrigin": [
+                1.4,
+                0,
+                0
+              ],
+              "rotationX": 0,
+              "rotationY": 0,
+              "rotationZ": 90,
+              "faces": {},
+              "children": [
+                {
+                  "name": "front_0_slot1",
+                  "from": [
+                    -0.01,
+                    -5.6568,
+                    5.6569
+                  ],
+                  "to": [
+                    0.39,
+                    2.3432,
+                    7.1569
+                  ],
+                  "rotationOrigin": [
+                    -0.01,
+                    -5.6568,
+                    5.6569
+                  ],
+                  "rotationX": -45,
+                  "rotationY": 0,
+                  "rotationZ": 0,
+                  "faces": {},
+                  "children": [
+                    {
+                      "name": "daggervis_0_slot1",
+                      "from": [
+                        0.15,
+                        7.8,
+                        -0.25
+                      ],
+                      "to": [
+                        0.45,
+                        10.8,
+                        0.15
+                      ],
+                      "rotationOrigin": [
+                        0.15,
+                        7.8,
+                        -0.25
+                      ],
+                      "rotationY": 0,
+                      "rotationZ": 0,
+                      "faces": {
+                        "north": {
+                          "texture": "#frontbag-1-material",
+                          "uv": [
+                            0,
+                            2,
+                            5,
+                            3
+                          ],
+                          "autoUv": false
+                        },
+                        "east": {
+                          "texture": "#frontbag-1-material",
+                          "uv": [
+                            3,
+                            0,
+                            4,
+                            1
+                          ],
+                          "autoUv": false
+                        },
+                        "south": {
+                          "texture": "#frontbag-1-material",
+                          "uv": [
+                            0,
+                            4.5,
+                            5,
+                            5.5
+                          ],
+                          "autoUv": false
+                        },
+                        "west": {
+                          "texture": "#frontbag-1-material",
+                          "uv": [
+                            3,
+                            0,
+                            4,
+                            1
+                          ],
+                          "autoUv": false
+                        },
+                        "up": {
+                          "texture": "#frontbag-1-material",
+                          "uv": [
+                            0,
+                            2,
+                            5,
+                            3
+                          ],
+                          "autoUv": false
+                        },
+                        "down": {
+                          "texture": "#frontbag-1-material",
+                          "uv": [
+                            0,
+                            3,
+                            5,
+                            4
+                          ],
+                          "autoUv": false
+                        }
+                      },
+                      "children": [
+                        {
+                          "name": "daggervis0-metal4_slot1",
+                          "from": [
+                            0,
+                            -0.3,
+                            0.3
+                          ],
+                          "to": [
+                            1.6,
+                            0.9,
+                            0.46
+                          ],
+                          "rotationOrigin": [
+                            0,
+                            -0.3,
+                            0.3
+                          ],
+                          "faces": {
+                            "north": {
+                              "texture": "#frontbag-1-metal",
+                              "uv": [
+                                3,
+                                6,
+                                8,
+                                6.5
+                              ],
+                              "autoUv": false
+                            },
+                            "east": {
+                              "texture": "#frontbag-1-metal",
+                              "uv": [
+                                1,
+                                2,
+                                1,
+                                2.5
+                              ],
+                              "autoUv": false
+                            },
+                            "south": {
+                              "texture": "#frontbag-1-metal",
+                              "uv": [
+                                1,
+                                3,
+                                6,
+                                3.5
+                              ],
+                              "autoUv": false
+                            },
+                            "west": {
+                              "texture": "#frontbag-1-metal",
+                              "uv": [
+                                0,
+                                1,
+                                0,
+                                1.5
+                              ],
+                              "autoUv": false
+                            },
+                            "down": {
+                              "texture": "#frontbag-1-metal",
+                              "uv": [
+                                1,
+                                2,
+                                6,
+                                2
+                              ],
+                              "autoUv": false
+                            }
+                          }
+                        }
+                      ],
+                      "rotationX": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animations": []
+}

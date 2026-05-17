@@ -1,0 +1,44 @@
+﻿# Build outputs
+[Bb]in/
+[Oo]bj/
+build/
+dist/
+out/
+Releases/
+Release/
+_pack/
+
+# Packaged mods and archives
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.nupkg
+
+# IDE/editor state
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET/generated files
+TestResults/
+GeneratedFiles/
+*.pdb
+*.cache
+*.log
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local/temp workspace artifacts
+_tmp*/
+_inspect*/
+*.bak
+*.tmp

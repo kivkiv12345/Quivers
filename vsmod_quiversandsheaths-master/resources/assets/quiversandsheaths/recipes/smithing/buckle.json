@@ -1,0 +1,262 @@
+[
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-brass"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-brass",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-copper"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-copper",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-tinbronze"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-tinbronze",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-bismuthbronze"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-bismuthbronze",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-blackbronze"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-blackbronze",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-gold"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-gold",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-silver"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-silver",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-iron"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-iron",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-meteoriciron"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-meteoriciron",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  },
+  {
+    "ingredient": {
+      "type": "item",
+      "code": "game:ingot-steel"
+    },
+    "pattern": [
+      [
+        "#####",
+        "#___#",
+        "#_#_#",
+        "#_#_#",
+        "#####",
+        "__#__",
+        "_____",
+        "#####",
+        "#####"
+      ]
+    ],
+    "name": "buckle",
+    "output": {
+      "type": "item",
+      "code": "part-buckle-steel",
+      "quantity": 2
+    },
+    "code": "quiversandsheaths-buckle-0-part-buckle--metal"
+  }
+]
