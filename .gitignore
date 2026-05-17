@@ -42,3 +42,11 @@ _tmp*/
 _inspect*/
 *.bak
 *.tmp
+
+# Local backup/patch files
+*.bak*
+*.orig
+*.rej
+*.patch
+localSettings.props
+Properties/localSettings.props
