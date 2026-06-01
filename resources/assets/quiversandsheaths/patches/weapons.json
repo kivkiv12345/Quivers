@@ -4,7 +4,7 @@
     "file": "game:itemtypes/tool/blade",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-blackguard-*": "blackguardsword", "*-forlorn-*": "forlornsword", "*-falx-*": "falxsword", "*": "default" }
+    "value": { "*-claymore-*": "greatsword_iron", "*-longsword-*": "longsword_iron", "*-blackguard-*": "blackguardsword", "*-forlorn-*": "forlornsword", "*-falx-*": "falxsword", "*": "default" }
   },
   {
     "side": "Server",
@@ -29,7 +29,7 @@
     "file": "game:itemtypes/combatoverhaul/sword",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-blackguard-*": "blackguardsword", "*-forlorn-*": "forlornsword", "*-falx-*": "falxsword", "*": "default" }
+    "value": { "*-claymore-*": "greatsword_iron", "*-longsword-*": "longsword_iron", "*-blackguard-*": "blackguardsword", "*-forlorn-*": "forlornsword", "*-falx-*": "falxsword", "*": "default" }
   },
   {
     "side": "Server",
@@ -96,12 +96,28 @@
     "file": "armory:itemtypes/weapons/sword-long",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-*bronze": "longsword_bronze", "*-*iron": "longsword_iron", "*-steel": "longsword_steel", "*": "default" }
+    "value": { "*-*bronze": "longsword_bronze", "*-*iron": "longsword_iron", "*-meteoricsteel": "longsword_steel", "*-steel": "longsword_steel", "*": "longsword_iron" }
   },
   {
     "side": "Server",
     "dependsOn": [{ "modid": "armoryfork" }],
     "file": "armory:itemtypes/weapons/sword-long",
+    "op": "add",
+    "path": "/attributes/MetalVariantCodeByType",
+    "value": { "*-tinbronze": "tinbronze", "*-bismuthbronze": "bismuthbronze", "*-blackbronze": "blackbronze", "*-iron": "iron", "*-meteoriciron": "meteoriciron", "*-steel": "steel", "*": "iron" }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "armoryfork" }],
+    "file": "armory:itemtypes/weapons/sword-great",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": { "*-*bronze": "greatsword_bronze", "*-*iron": "greatsword_iron", "*-meteoricsteel": "greatsword_steel", "*-steel": "greatsword_steel", "*": "greatsword_iron" }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "armoryfork" }],
+    "file": "armory:itemtypes/weapons/sword-great",
     "op": "add",
     "path": "/attributes/MetalVariantCodeByType",
     "value": { "*-tinbronze": "tinbronze", "*-bismuthbronze": "bismuthbronze", "*-blackbronze": "blackbronze", "*-iron": "iron", "*-meteoriciron": "meteoriciron", "*-steel": "steel", "*": "iron" }

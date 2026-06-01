@@ -41,6 +41,11 @@ public class SheathableStats
 
 public class SheathBehavior : ToolBag
 {
+    private static readonly string[] SlingStoneWildcards = ["stone-*", "*:stone-*"];
+    private static readonly string[] MetalVariantSources = ["metal", "material"];
+    private static readonly string[] LeatherVariantSources = ["leather", "color"];
+    private static readonly string[] WoodVariantSources = ["wood"];
+
     public SheathBehavior(CollectibleObject collObj) : base(collObj)
     {
     }
@@ -67,11 +72,35 @@ public class SheathBehavior : ToolBag
             }
         }
 
-        return base.GetOrCreateSlots(bagstack, parentinv, bagIndex, world);
+        List<ItemSlotBagContent?> slots = base.GetOrCreateSlots(bagstack, parentinv, bagIndex, world);
+        ApplySlingPouchStoneSetting(slots);
+
+        return slots;
     }
 
     protected readonly List<long> ProcessedPlayers = [];
     protected SheathStats Stats = new();
+
+    private void ApplySlingPouchStoneSetting(List<ItemSlotBagContent?> slots)
+    {
+        if (collObj.Code?.Path != "beltbag-back-pouch-sling") return;
+
+        bool allowStones = QuiversAndSheathsSystem.Settings.AllowStonesInSlingPouch;
+
+        foreach (ItemSlotBagContentWithWildcardMatch slot in slots.OfType<ItemSlotBagContentWithWildcardMatch>())
+        {
+            if (slot.Config.HandleHotkey) continue;
+            if (slot.Config.BackpackCategoryCode != "ammunition") continue;
+
+            string[] withoutStones = slot.Config.CanHoldWildcards
+                .Where(wildcard => !SlingStoneWildcards.Contains(wildcard))
+                .ToArray();
+
+            slot.Config.CanHoldWildcards = allowStones
+                ? withoutStones.Concat(SlingStoneWildcards).Distinct().ToArray()
+                : withoutStones;
+        }
+    }
 
     protected static InventoryBase? GetGearInventory(Entity entity)
     {
@@ -160,64 +189,10 @@ public class SheathBehavior : ToolBag
                 sheathSlot.MarkDirty();
             }
 
-            Variants weaponVariants = Variants.FromStack(slotAtIndex.Itemstack);
-            
-            if (weaponVariants.Get(metalVariantCode) != null)
-            {
-                if (variants.Get(metalVariantCode) != weaponVariants.Get(metalVariantCode))
-                {
-                    variants.Set(metalVariantCode, weaponVariants.Get(metalVariantCode));
-                    variants.ToStack(sheathSlot.Itemstack);
-                    sheathSlot.MarkDirty();
-                }
-            }
-            else
-            {
-                if (variants.Get(metalVariantCode) != stats.MetalVariantCode)
-                {
-                    variants.Set(metalVariantCode, stats.MetalVariantCode);
-                    variants.ToStack(sheathSlot.Itemstack);
-                    sheathSlot.MarkDirty();
-                }
-            }
-
-            if (weaponVariants.Get(leatherVariantCode) != null)
-            {
-                if (variants.Get(leatherVariantCode) != weaponVariants.Get(leatherVariantCode))
-                {
-                    variants.Set(leatherVariantCode, weaponVariants.Get(leatherVariantCode));
-                    variants.ToStack(sheathSlot.Itemstack);
-                    sheathSlot.MarkDirty();
-                }
-            }
-            else
-            {
-                if (variants.Get(leatherVariantCode) != stats.LeatherVariantCode)
-                {
-                    variants.Set(leatherVariantCode, stats.LeatherVariantCode);
-                    variants.ToStack(sheathSlot.Itemstack);
-                    sheathSlot.MarkDirty();
-                }
-            }
-
-            if (weaponVariants.Get(woodVariantCode) != null)
-            {
-                if (variants.Get(woodVariantCode) != weaponVariants.Get(woodVariantCode))
-                {
-                    variants.Set(woodVariantCode, weaponVariants.Get(woodVariantCode));
-                    variants.ToStack(sheathSlot.Itemstack);
-                    sheathSlot.MarkDirty();
-                }
-            }
-            else
-            {
-                if (variants.Get(woodVariantCode) != stats.WoodVariantCode)
-                {
-                    variants.Set(woodVariantCode, stats.WoodVariantCode);
-                    variants.ToStack(sheathSlot.Itemstack);
-                    sheathSlot.MarkDirty();
-                }
-            }
+            TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, slotAtIndex.Itemstack, MetalVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, slotAtIndex.Itemstack, LeatherVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, slotAtIndex.Itemstack, WoodVariantSources);
+            CopyStoredShieldTextureVariants(variants, sheathSlot, slotAtIndex.Itemstack, mainHand);
         }
     }
 
@@ -277,11 +252,12 @@ public class SheathBehavior : ToolBag
                 SetVariant(variants, sheathSlot, variantCode, stats.InSheathVariantCode);
             }
 
-            Variants inQuiverVariants = quiverSlot.Itemstack?.Attributes != null ? Variants.FromStack(quiverSlot.Itemstack) : new();
+            ItemStack? storedStack = quiverNotEmptySlot?.Itemstack;
 
-            TrySetVariant(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, inQuiverVariants);
-            TrySetVariant(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, inQuiverVariants);
-            TrySetVariant(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, inQuiverVariants);
+            TrySetVariantFromStoredStack(variants, sheathSlot, leatherVariantCode, stats.LeatherVariantCode, storedStack, LeatherVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, metalVariantCode, stats.MetalVariantCode, storedStack, MetalVariantSources);
+            TrySetVariantFromStoredStack(variants, sheathSlot, woodVariantCode, stats.WoodVariantCode, storedStack, WoodVariantSources);
+            CopyStoredShieldTextureVariants(variants, sheathSlot, storedStack, mainHand: false);
         }
     }
 
@@ -315,6 +291,122 @@ public class SheathBehavior : ToolBag
             variants.ToStack(slot.Itemstack);
             slot.MarkDirty();
         }
+    }
+
+    private void TrySetVariantFromStoredStack(Variants variants, ItemSlot sheathSlot, string targetVariantCode, string defaultVariantValue, ItemStack? storedStack, params string[] sourceVariantCodes)
+    {
+        string variantValue = GetStoredStackVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
+        SetVariant(variants, sheathSlot, targetVariantCode, variantValue);
+    }
+
+    private static string? GetStoredStackVariant(ItemStack? storedStack, string targetVariantCode, params string[] sourceVariantCodes)
+    {
+        if (storedStack == null) return null;
+
+        Variants variants = Variants.FromStack(storedStack);
+        foreach (string key in new[] { targetVariantCode }.Concat(sourceVariantCodes))
+        {
+            string? value = variants.Get(key);
+            if (!string.IsNullOrEmpty(value)) return value;
+
+            value = storedStack.Attributes.GetString(key);
+            if (!string.IsNullOrEmpty(value)) return value;
+
+            if (storedStack.Collectible?.Variant?.TryGetValue(key, out value) == true && !string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+        }
+
+        return null;
+    }
+
+    private void CopyStoredShieldTextureVariants(Variants variants, ItemSlot sheathSlot, ItemStack? storedStack, bool mainHand)
+    {
+        if (storedStack?.Collectible == null || !IsShield(storedStack)) return;
+
+        string prefix = mainHand ? "right" : "left";
+
+        CopyTextureAttributeVariant(variants, sheathSlot, storedStack, prefix, "cloth", "cloth1", "color");
+        CopyTextureAttributeVariant(variants, sheathSlot, storedStack, prefix, "cloth1", "cloth1", "color");
+        CopyTextureAttributeVariant(variants, sheathSlot, storedStack, prefix, "cloth2", "cloth2", "color");
+        CopyTextureAttributeVariant(variants, sheathSlot, storedStack, prefix, "cloth3", "cloth3", "cloth2", "cloth1", "color");
+
+        CopyVanillaRoundShieldTextureVariants(variants, sheathSlot, storedStack, prefix);
+    }
+
+    private static bool IsShield(ItemStack stack)
+    {
+        return stack.Collectible.Code?.Path.Contains("shield", StringComparison.OrdinalIgnoreCase) == true;
+    }
+
+    private void CopyTextureAttributeVariant(Variants variants, ItemSlot sheathSlot, ItemStack storedStack, string prefix, string targetTextureCode, params string[] sourceKeys)
+    {
+        string? texturePath = GetStoredStackVariant(storedStack, $"{prefix}_{targetTextureCode}", sourceKeys);
+        if (string.IsNullOrEmpty(texturePath)) return;
+
+        if (sourceKeys.Contains("color") && !texturePath.Contains('/') && !texturePath.Contains(':'))
+        {
+            texturePath = $"game:block/cloth/linen/{texturePath}";
+        }
+
+        SetVariant(variants, sheathSlot, $"{prefix}_{targetTextureCode}", NormalizeTexturePath(texturePath));
+    }
+
+    private void CopyVanillaRoundShieldTextureVariants(Variants variants, ItemSlot sheathSlot, ItemStack storedStack, string prefix)
+    {
+        string? construction = GetStoredStackVariant(storedStack, "construction");
+        if (construction is not ("woodmetal" or "woodmetalleather" or "metal")) return;
+
+        string metal = GetStoredStackVariant(storedStack, "metal", "material") ?? "iron";
+        string wood = GetStoredStackVariant(storedStack, "wood") ?? "generic";
+        string color = GetStoredStackVariant(storedStack, "color", "leather") ?? "plain";
+        string deco = GetStoredStackVariant(storedStack, "deco") ?? "none";
+
+        switch (construction)
+        {
+            case "woodmetal":
+                string woodTexture = wood == "generic" ? "game:item/tool/shield/wood" : $"game:block/wood/debarked/{wood}";
+                SetTexturePathVariant(variants, sheathSlot, prefix, "front", woodTexture);
+                SetTexturePathVariant(variants, sheathSlot, prefix, "back", woodTexture);
+                SetTexturePathVariant(variants, sheathSlot, prefix, "handle", woodTexture);
+                SetTexturePathVariant(variants, sheathSlot, prefix, "rim", $"game:block/metal/sheet/{metal}1");
+                break;
+            case "woodmetalleather":
+                SetTexturePathVariant(variants, sheathSlot, prefix, "front", $"game:item/tool/shield/{(deco == "ornate" ? "ornate" : "leather")}/{color}");
+                SetTexturePathVariant(variants, sheathSlot, prefix, "rim", $"game:block/metal/sheet/{metal}1");
+                break;
+            case "metal":
+                SetTexturePathVariant(variants, sheathSlot, prefix, "front", deco == "ornate" ? $"game:item/tool/shield/ornate/{color}" : $"game:block/metal/plate/{metal}");
+                SetTexturePathVariant(variants, sheathSlot, prefix, "back", $"game:block/metal/plate/{metal}");
+                SetTexturePathVariant(variants, sheathSlot, prefix, "handle", $"game:block/metal/sheet/{metal}1");
+                SetTexturePathVariant(variants, sheathSlot, prefix, "rim", $"game:block/metal/sheet/{metal}1");
+                break;
+        }
+    }
+
+    private void SetTexturePathVariant(Variants variants, ItemSlot sheathSlot, string prefix, string textureCode, string texturePath)
+    {
+        SetVariant(variants, sheathSlot, $"{prefix}_{textureCode}", NormalizeTexturePath(texturePath));
+    }
+
+    private static string NormalizeTexturePath(string texturePath)
+    {
+        texturePath = texturePath.Trim().Replace('\\', '/');
+        if (texturePath.StartsWith("textures/", StringComparison.OrdinalIgnoreCase))
+        {
+            texturePath = texturePath["textures/".Length..];
+        }
+        if (texturePath.StartsWith("game:", StringComparison.OrdinalIgnoreCase))
+        {
+            texturePath = texturePath["game:".Length..];
+        }
+        if (texturePath.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+        {
+            texturePath = texturePath[..^".png".Length];
+        }
+
+        return texturePath;
     }
 
 

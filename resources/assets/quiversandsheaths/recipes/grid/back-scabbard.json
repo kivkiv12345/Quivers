@@ -1,7 +1,7 @@
 [
   {
-    "enabled": false,
-    "ingredientPattern": "LNL,LDL,LLL",
+    "enabled": true,
+    "ingredientPattern": "LNL,LLL,LSL",
     "recipeGroup": 1,
     "ingredients": {
       "N": {
@@ -12,29 +12,24 @@
         "type": "item",
         "code": "game:leather-normal-plain"
       },
-      "D": {
+      "S": {
         "type": "item",
-        "code": "armory:dagger-*",
+        "code": "game:sewingkit",
         "isTool": true,
         "toolDurabilityCost": 0
       }
     },
     "width": 3,
     "height": 3,
-    "name": "dual-dagger-sheath",
+    "name": "back-scabbard",
     "output": {
       "type": "item",
-      "code": "beltbag-left-sheath-dualdaggers"
-    },
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ]
+      "code": "shoulderbag-back-sheath-backscabbard"
+    }
   },
   {
-    "enabled": false,
-    "ingredientPattern": "LNL,LDL,LLL",
+    "enabled": true,
+    "ingredientPattern": "LNL,LLL,LSL",
     "recipeGroup": 2,
     "ingredients": {
       "N": {
@@ -45,14 +40,27 @@
         "type": "item",
         "code": "game:leather-normal-{leather}"
       },
-      "D": {
+      "S": {
         "type": "item",
-        "code": "armory:dagger-*",
+        "code": "game:sewingkit",
         "isTool": true,
         "toolDurabilityCost": 0
       }
     },
     "allowedVariants": {
+      "leather": [
+        "plain",
+        "orange",
+        "black",
+        "red",
+        "blue",
+        "purple",
+        "pink",
+        "white",
+        "yellow",
+        "gray",
+        "green"
+      ],
       "metal": [
         "brass",
         "copper",
@@ -68,21 +76,16 @@
     },
     "width": 3,
     "height": 3,
-    "name": "dual-dagger-sheath",
+    "name": "back-scabbard",
     "output": {
       "type": "item",
-      "code": "beltbag-left-sheath-dualdaggers",
+      "code": "shoulderbag-back-sheath-backscabbard",
       "attributes": {
         "types": {
           "leather": "{leather}",
           "metal": "{metal}"
         }
       }
-    },
-    "dependsOn": [
-      {
-        "modid": "armoryfork"
-      }
-    ]
+    }
   }
 ]

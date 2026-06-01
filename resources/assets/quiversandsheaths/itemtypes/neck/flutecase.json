@@ -13,7 +13,7 @@
       "properties": {
         "toolSlot": {
           "slotColor": "#61c8ff",
-          "canHoldWildcards": ["game:instrument-flute1"],
+          "canHoldWildcards": ["game:instrument-flute1", "jaunt:instrument-flute"],
           "canHoldItemTags": ["flute"],
           "slotsIcon": "quiversandsheaths:flute",
           "SlotBackpackCategory": "weapon-tool",

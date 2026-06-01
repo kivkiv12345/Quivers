@@ -31,6 +31,12 @@
       "quiversandsheaths:itemtypes/beltbags/sheath.json": {
         "behaviors/0/properties/hotkey": "sheath_sword_hotkey"
       },
+      "quiversandsheaths:itemtypes/beltbags/sheath-dual-daggers.json": {
+        "behaviors/0/properties/hotkey": "sheath_sword_hotkey"
+      },
+      "quiversandsheaths:itemtypes/shoulder/back-scabbard.json": {
+        "behaviors/0/properties/hotkey": "sheath_back_scabbard_hotkey"
+      },
       "quiversandsheaths:itemtypes/beltbags/sheath-pistol.json": {
         "behaviors/0/properties/hotkey": "sheath_pistol_hotkey"
       },
@@ -71,7 +77,7 @@
       "ingui": "quiversandsheaths:setting-sheath_bow_hotkey",
       "default": "Ranged (main hand)",
       "mapping": {
-        "Ranged (main hand)" : {
+        "Ranged (main hand)": {
           "hotkeyCode": "quiversandsheaths-swap-weapon-right-ranged",
           "hotkeyName": "(CO) Swap ranged weapon (main hand)",
           "hotkeyKey": "R"
@@ -109,7 +115,7 @@
       "ingui": "quiversandsheaths:setting-sheath_sling_hotkey",
       "default": "Ranged (main hand)",
       "mapping": {
-        "Ranged (main hand)" : {
+        "Ranged (main hand)": {
           "hotkeyCode": "quiversandsheaths-swap-weapon-right-ranged",
           "hotkeyName": "(CO) Swap ranged weapon (main hand)",
           "hotkeyKey": "R"
@@ -147,7 +153,7 @@
       "ingui": "quiversandsheaths:setting-sheath_javelin_hotkey",
       "default": "Ranged (main hand)",
       "mapping": {
-        "Ranged (main hand)" : {
+        "Ranged (main hand)": {
           "hotkeyCode": "quiversandsheaths-swap-weapon-right-ranged",
           "hotkeyName": "(CO) Swap ranged weapon (main hand)",
           "hotkeyKey": "R"
@@ -185,7 +191,7 @@
       "ingui": "quiversandsheaths:setting-sheath_sword_hotkey",
       "default": "Melee (main hand)",
       "mapping": {
-        "Ranged (main hand)" : {
+        "Ranged (main hand)": {
           "hotkeyCode": "quiversandsheaths-swap-weapon-right-ranged",
           "hotkeyName": "(CO) Swap ranged weapon (main hand)",
           "hotkeyKey": "R"
@@ -218,12 +224,40 @@
       }
     },
     {
+      "code": "sheath_back_scabbard_hotkey",
+      "type": "other",
+      "ingui": "quiversandsheaths:setting-sheath_back_scabbard_hotkey",
+      "default": "Back scabbard",
+      "mapping": {
+        "Back scabbard": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-right-melee-back",
+          "hotkeyName": "(CO) Swap back scabbard weapon (main hand)",
+          "hotkeyKey": "R"
+        },
+        "Melee (main hand)": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-right-melee",
+          "hotkeyName": "(CO) Swap melee weapon (main hand)",
+          "hotkeyKey": "R"
+        },
+        "Melee (off hand)": {
+          "hotkeyCode": "quiversandsheaths-swap-weapon-left-melee",
+          "hotkeyName": "(CO) Swap melee weapon (off hand)",
+          "hotkeyKey": "R"
+        },
+        "Additional": {
+          "hotkeyCode": "quiversandsheaths-swap-additional",
+          "hotkeyName": "(CO) Additional swap hotkey",
+          "hotkeyKey": "R"
+        }
+      }
+    },
+    {
       "code": "sheath_pistol_hotkey",
       "type": "other",
       "ingui": "quiversandsheaths:setting-sheath_pistol_hotkey",
       "default": "Ranged (main hand)",
       "mapping": {
-        "Ranged (main hand)" : {
+        "Ranged (main hand)": {
           "hotkeyCode": "quiversandsheaths-swap-weapon-right-ranged",
           "hotkeyName": "(CO) Swap ranged weapon (main hand)",
           "hotkeyKey": "R"
@@ -261,7 +295,7 @@
       "ingui": "quiversandsheaths:setting-sheath_pistol_offhand_hotkey",
       "default": "Ranged (off hand)",
       "mapping": {
-        "Ranged (main hand)" : {
+        "Ranged (main hand)": {
           "hotkeyCode": "quiversandsheaths-swap-weapon-right-ranged",
           "hotkeyName": "(CO) Swap ranged weapon (main hand)",
           "hotkeyKey": "R"
@@ -342,6 +376,14 @@
       "range": {
         "min": 1
       }
+    },
+    {
+      "code": "allow_stones_in_sling_pouch",
+      "type": "boolean",
+      "ingui": "quiversandsheaths:setting-allow_stones_in_sling_pouch",
+      "comment": "quiversandsheaths:setting-comment-allow_stones_in_sling_pouch",
+      "default": false,
+      "clientSide": true
     },
     {
       "type": "separator",

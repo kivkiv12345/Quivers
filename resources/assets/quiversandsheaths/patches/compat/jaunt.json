@@ -1,0 +1,21 @@
+[
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "jaunt" }],
+    "file": "jaunt:itemtypes/instrument",
+    "op": "addMerge",
+    "path": "/tags",
+    "value": ["flute"]
+  },
+  {
+    "side": "Server",
+    "dependsOn": [{ "modid": "jaunt" }],
+    "file": "jaunt:itemtypes/instrument",
+    "op": "addMerge",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": {
+      "*-flute": "flute",
+      "*": ""
+    }
+  }
+]

@@ -205,7 +205,7 @@ public class ShapeTexturesFromAttributes : CollectibleBehavior, IContainedMeshSo
                     ctex.Base.Domain = "game";
                 }
                 ctex.Bake(_api.Assets);
-                intoDict[textureCode] = ctex;
+                intoDict[texturePrefixCode + textureCode] = ctex;
                 shape.Textures[textureCode] = ctex.Baked.BakedName;
             }
         }
