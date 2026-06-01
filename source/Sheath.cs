@@ -74,12 +74,53 @@ public class SheathBehavior : ToolBag
 
         List<ItemSlotBagContent?> slots = base.GetOrCreateSlots(bagstack, parentinv, bagIndex, world);
         ApplySlingPouchStoneSetting(slots);
+        RefreshStoredToolSlotVariants(bagstack, slots);
 
         return slots;
     }
 
     protected readonly List<long> ProcessedPlayers = [];
     protected SheathStats Stats = new();
+
+    private void RefreshStoredToolSlotVariants(ItemStack bagstack, IEnumerable<ItemSlotBagContent?> slots)
+    {
+        foreach (ItemSlotBagContentWithWildcardMatch slot in slots.OfType<ItemSlotBagContentWithWildcardMatch>())
+        {
+            if (!slot.Config.HandleHotkey || slot.SourceBag?.Item?.Id != collObj.Id)
+            {
+                continue;
+            }
+
+            bool mainHand = slot.MainHand;
+            string stateVariantCode = mainHand ? Stats.RightHandStateVariant : Stats.LeftHandStateVariant;
+            Variants variants = Variants.FromStack(bagstack);
+
+            if (slot.Empty)
+            {
+                SetVariant(variants, bagstack, stateVariantCode, Stats.EmptyStateCode);
+                continue;
+            }
+
+            SetVariant(variants, bagstack, stateVariantCode, Stats.FullStateCode);
+
+            if (slot.Itemstack?.Collectible?.Attributes == null)
+            {
+                continue;
+            }
+
+            SheathableStats stats = slot.Itemstack.Collectible.Attributes.AsObject<SheathableStats>();
+            string variantCode = mainHand ? Stats.RightHandVariant : Stats.LeftHandVariant;
+            string metalVariantCode = mainHand ? Stats.RightWeaponMetalVariant : Stats.LeftWeaponMetalVariant;
+            string leatherVariantCode = mainHand ? Stats.RightWeaponLeatherVariant : Stats.LeftWeaponLeatherVariant;
+            string woodVariantCode = mainHand ? Stats.RightWeaponWoodVariant : Stats.LeftWeaponWoodVariant;
+
+            SetVariant(variants, bagstack, variantCode, stats.InSheathVariantCode);
+            TrySetVariantFromStoredStack(variants, bagstack, metalVariantCode, stats.MetalVariantCode, slot.Itemstack, MetalVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, leatherVariantCode, stats.LeatherVariantCode, slot.Itemstack, LeatherVariantSources);
+            TrySetVariantFromStoredStack(variants, bagstack, woodVariantCode, stats.WoodVariantCode, slot.Itemstack, WoodVariantSources);
+            CopyStoredShieldTextureVariants(variants, bagstack, slot.Itemstack, mainHand);
+        }
+    }
 
     private void ApplySlingPouchStoneSetting(List<ItemSlotBagContent?> slots)
     {
@@ -283,6 +324,15 @@ public class SheathBehavior : ToolBag
         }
     }
 
+    protected virtual void SetVariant(Variants variants, ItemStack stack, string variantCode, string variantValue)
+    {
+        if (variants.Get(variantCode) != variantValue)
+        {
+            variants.Set(variantCode, variantValue);
+            variants.ToStack(stack);
+        }
+    }
+
     protected virtual void SetVariant(Variants variants, ItemSlot slot, string variantCode, Variants variantValueHolder)
     {
         if (variants.Get(variantCode) != variantValueHolder.Get(variantCode))
@@ -297,6 +347,12 @@ public class SheathBehavior : ToolBag
     {
         string variantValue = GetStoredStackVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
         SetVariant(variants, sheathSlot, targetVariantCode, variantValue);
+    }
+
+    private void TrySetVariantFromStoredStack(Variants variants, ItemStack sheathStack, string targetVariantCode, string defaultVariantValue, ItemStack? storedStack, params string[] sourceVariantCodes)
+    {
+        string variantValue = GetStoredStackVariant(storedStack, targetVariantCode, sourceVariantCodes) ?? defaultVariantValue;
+        SetVariant(variants, sheathStack, targetVariantCode, variantValue);
     }
 
     private static string? GetStoredStackVariant(ItemStack? storedStack, string targetVariantCode, params string[] sourceVariantCodes)
@@ -323,16 +379,26 @@ public class SheathBehavior : ToolBag
 
     private void CopyStoredShieldTextureVariants(Variants variants, ItemSlot sheathSlot, ItemStack? storedStack, bool mainHand)
     {
+        CopyStoredShieldTextureVariants((key, value) => SetVariant(variants, sheathSlot, key, value), storedStack, mainHand);
+    }
+
+    private void CopyStoredShieldTextureVariants(Variants variants, ItemStack sheathStack, ItemStack? storedStack, bool mainHand)
+    {
+        CopyStoredShieldTextureVariants((key, value) => SetVariant(variants, sheathStack, key, value), storedStack, mainHand);
+    }
+
+    private void CopyStoredShieldTextureVariants(Action<string, string> setVariant, ItemStack? storedStack, bool mainHand)
+    {
         if (storedStack?.Collectible == null || !IsShield(storedStack)) return;
 
         string prefix = mainHand ? "right" : "left";
 
-        CopyTextureAttributeVariant(variants, sheathSlot, storedStack, prefix, "cloth", "cloth1", "color");
-        CopyTextureAttributeVariant(variants, sheathSlot, storedStack, prefix, "cloth1", "cloth1", "color");
-        CopyTextureAttributeVariant(variants, sheathSlot, storedStack, prefix, "cloth2", "cloth2", "color");
-        CopyTextureAttributeVariant(variants, sheathSlot, storedStack, prefix, "cloth3", "cloth3", "cloth2", "cloth1", "color");
+        CopyTextureAttributeVariant(setVariant, storedStack, prefix, "cloth", "cloth1", "color");
+        CopyTextureAttributeVariant(setVariant, storedStack, prefix, "cloth1", "cloth1", "color");
+        CopyTextureAttributeVariant(setVariant, storedStack, prefix, "cloth2", "cloth2", "color");
+        CopyTextureAttributeVariant(setVariant, storedStack, prefix, "cloth3", "cloth3", "cloth2", "cloth1", "color");
 
-        CopyVanillaRoundShieldTextureVariants(variants, sheathSlot, storedStack, prefix);
+        CopyVanillaRoundShieldTextureVariants(setVariant, storedStack, prefix);
     }
 
     private static bool IsShield(ItemStack stack)
@@ -340,7 +406,7 @@ public class SheathBehavior : ToolBag
         return stack.Collectible.Code?.Path.Contains("shield", StringComparison.OrdinalIgnoreCase) == true;
     }
 
-    private void CopyTextureAttributeVariant(Variants variants, ItemSlot sheathSlot, ItemStack storedStack, string prefix, string targetTextureCode, params string[] sourceKeys)
+    private void CopyTextureAttributeVariant(Action<string, string> setVariant, ItemStack storedStack, string prefix, string targetTextureCode, params string[] sourceKeys)
     {
         string? texturePath = GetStoredStackVariant(storedStack, $"{prefix}_{targetTextureCode}", sourceKeys);
         if (string.IsNullOrEmpty(texturePath)) return;
@@ -350,10 +416,10 @@ public class SheathBehavior : ToolBag
             texturePath = $"game:block/cloth/linen/{texturePath}";
         }
 
-        SetVariant(variants, sheathSlot, $"{prefix}_{targetTextureCode}", NormalizeTexturePath(texturePath));
+        setVariant($"{prefix}_{targetTextureCode}", NormalizeTexturePath(texturePath));
     }
 
-    private void CopyVanillaRoundShieldTextureVariants(Variants variants, ItemSlot sheathSlot, ItemStack storedStack, string prefix)
+    private void CopyVanillaRoundShieldTextureVariants(Action<string, string> setVariant, ItemStack storedStack, string prefix)
     {
         string? construction = GetStoredStackVariant(storedStack, "construction");
         if (construction is not ("woodmetal" or "woodmetalleather" or "metal")) return;
@@ -367,27 +433,27 @@ public class SheathBehavior : ToolBag
         {
             case "woodmetal":
                 string woodTexture = wood == "generic" ? "game:item/tool/shield/wood" : $"game:block/wood/debarked/{wood}";
-                SetTexturePathVariant(variants, sheathSlot, prefix, "front", woodTexture);
-                SetTexturePathVariant(variants, sheathSlot, prefix, "back", woodTexture);
-                SetTexturePathVariant(variants, sheathSlot, prefix, "handle", woodTexture);
-                SetTexturePathVariant(variants, sheathSlot, prefix, "rim", $"game:block/metal/sheet/{metal}1");
+                SetTexturePathVariant(setVariant, prefix, "front", woodTexture);
+                SetTexturePathVariant(setVariant, prefix, "back", woodTexture);
+                SetTexturePathVariant(setVariant, prefix, "handle", woodTexture);
+                SetTexturePathVariant(setVariant, prefix, "rim", $"game:block/metal/sheet/{metal}1");
                 break;
             case "woodmetalleather":
-                SetTexturePathVariant(variants, sheathSlot, prefix, "front", $"game:item/tool/shield/{(deco == "ornate" ? "ornate" : "leather")}/{color}");
-                SetTexturePathVariant(variants, sheathSlot, prefix, "rim", $"game:block/metal/sheet/{metal}1");
+                SetTexturePathVariant(setVariant, prefix, "front", $"game:item/tool/shield/{(deco == "ornate" ? "ornate" : "leather")}/{color}");
+                SetTexturePathVariant(setVariant, prefix, "rim", $"game:block/metal/sheet/{metal}1");
                 break;
             case "metal":
-                SetTexturePathVariant(variants, sheathSlot, prefix, "front", deco == "ornate" ? $"game:item/tool/shield/ornate/{color}" : $"game:block/metal/plate/{metal}");
-                SetTexturePathVariant(variants, sheathSlot, prefix, "back", $"game:block/metal/plate/{metal}");
-                SetTexturePathVariant(variants, sheathSlot, prefix, "handle", $"game:block/metal/sheet/{metal}1");
-                SetTexturePathVariant(variants, sheathSlot, prefix, "rim", $"game:block/metal/sheet/{metal}1");
+                SetTexturePathVariant(setVariant, prefix, "front", deco == "ornate" ? $"game:item/tool/shield/ornate/{color}" : $"game:block/metal/plate/{metal}");
+                SetTexturePathVariant(setVariant, prefix, "back", $"game:block/metal/plate/{metal}");
+                SetTexturePathVariant(setVariant, prefix, "handle", $"game:block/metal/sheet/{metal}1");
+                SetTexturePathVariant(setVariant, prefix, "rim", $"game:block/metal/sheet/{metal}1");
                 break;
         }
     }
 
-    private void SetTexturePathVariant(Variants variants, ItemSlot sheathSlot, string prefix, string textureCode, string texturePath)
+    private void SetTexturePathVariant(Action<string, string> setVariant, string prefix, string textureCode, string texturePath)
     {
-        SetVariant(variants, sheathSlot, $"{prefix}_{textureCode}", NormalizeTexturePath(texturePath));
+        setVariant($"{prefix}_{textureCode}", NormalizeTexturePath(texturePath));
     }
 
     private static string NormalizeTexturePath(string texturePath)
