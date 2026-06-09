@@ -50,7 +50,7 @@
             "shield"
           ],
           "slotsIcon": "quiversandsheaths:pistol",
-          "SlotBackpackCategory": "",
+          "SlotBackpackCategory": "weapon-tool",
           "HandleHotkey": true
         },
         "takeOutColor": "#999999",
