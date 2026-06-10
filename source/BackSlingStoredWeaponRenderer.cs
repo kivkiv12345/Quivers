@@ -37,7 +37,7 @@ public sealed class BackSlingStoredWeaponRenderConfig
     public Dictionary<string, BackSlingStoredWeaponItemTransform> TransformByStoredItem { get; set; } = [];
     public ModelTransform Transform { get; set; } = new()
     {
-        Translation = new Vec3f(3.6f, 4.2f, 2.05f),
+        Translation = new Vec3f(6f, 4.2f, 2.05f),
         Rotation = new Vec3f(0f, -86f, 125f),
         Origin = new Vec3f(0f, 0f, 0f),
         Scale = 1f
