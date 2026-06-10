@@ -37,6 +37,9 @@
       "quiversandsheaths:itemtypes/shoulder/back-scabbard.json": {
         "behaviors/0/properties/hotkey": "sheath_back_scabbard_hotkey"
       },
+      "quiversandsheaths:itemtypes/shoulder/back-sling.json": {
+        "behaviors/0/properties/hotkey": "sheath_back_scabbard_hotkey"
+      },
       "quiversandsheaths:itemtypes/beltbags/sheath-pistol.json": {
         "behaviors/0/properties/hotkey": "sheath_pistol_hotkey"
       },

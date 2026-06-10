@@ -1,10 +1,17 @@
-﻿[
+[
   {
     "side": "Server",
     "file": "game:itemtypes/tool/blade",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-claymore-*": "greatsword_iron", "*-longsword-*": "longsword_iron", "*-blackguard-*": "blackguardsword", "*-forlorn-*": "forlornsword", "*-falx-*": "falxsword", "*": "default" }
+    "value": {
+      "*-claymore-*": "greatsword_iron",
+      "*-longsword-*": "longsword_iron",
+      "*-blackguard-*": "blackguardsword",
+      "*-forlorn-*": "forlornsword",
+      "*-falx-*": "falxsword",
+      "*": "default"
+    }
   },
   {
     "side": "Server",
@@ -29,7 +36,14 @@
     "file": "game:itemtypes/combatoverhaul/sword",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-claymore-*": "greatsword_iron", "*-longsword-*": "longsword_iron", "*-blackguard-*": "blackguardsword", "*-forlorn-*": "forlornsword", "*-falx-*": "falxsword", "*": "default" }
+    "value": {
+      "*-claymore-*": "greatsword_iron",
+      "*-longsword-*": "longsword_iron",
+      "*-blackguard-*": "blackguardsword",
+      "*-forlorn-*": "forlornsword",
+      "*-falx-*": "falxsword",
+      "*": "default"
+    }
   },
   {
     "side": "Server",
@@ -51,31 +65,66 @@
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/sabre",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-*bronze": "sabre_bronze", "*-*iron": "sabre_iron", "*-steel": "sabre_steel", "*": "default" }
+    "value": {
+      "*-*bronze": "sabre_bronze",
+      "*-*iron": "sabre_iron",
+      "*-steel": "sabre_steel",
+      "*": "default"
+    }
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/sabre",
     "op": "add",
     "path": "/attributes/MetalVariantCodeByType",
-    "value": { "*-tinbronze": "tinbronze", "*-bismuthbronze": "bismuthbronze", "*-blackbronze": "blackbronze", "*-iron": "iron", "*-meteoriciron": "meteoriciron", "*-steel": "steel", "*": "iron" }
+    "value": {
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-steel": "steel",
+      "*": "iron"
+    }
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/sword-short",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-copper": "shortsword_copper", "*-*bronze": "shortsword_bronze", "*-*iron": "shortsword_iron", "*-steel": "shortsword_steel", "*": "default" }
+    "value": {
+      "*-copper": "shortsword_copper",
+      "*-*bronze": "shortsword_bronze",
+      "*-*iron": "shortsword_iron",
+      "*-steel": "shortsword_steel",
+      "*": "default"
+    }
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/sword-short",
     "op": "add",
     "path": "/attributes/MetalVariantCodeByType",
@@ -92,47 +141,105 @@
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/sword-long",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-*bronze": "longsword_bronze", "*-*iron": "longsword_iron", "*-meteoricsteel": "longsword_steel", "*-steel": "longsword_steel", "*": "longsword_iron" }
+    "value": {
+      "*-*bronze": "longsword_bronze",
+      "*-*iron": "longsword_iron",
+      "*-meteoricsteel": "longsword_steel",
+      "*-steel": "longsword_steel",
+      "*": "longsword_iron"
+    }
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/sword-long",
     "op": "add",
     "path": "/attributes/MetalVariantCodeByType",
-    "value": { "*-tinbronze": "tinbronze", "*-bismuthbronze": "bismuthbronze", "*-blackbronze": "blackbronze", "*-iron": "iron", "*-meteoriciron": "meteoriciron", "*-steel": "steel", "*": "iron" }
+    "value": {
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-steel": "steel",
+      "*": "iron"
+    }
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/sword-great",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-*bronze": "greatsword_bronze", "*-*iron": "greatsword_iron", "*-meteoricsteel": "greatsword_steel", "*-steel": "greatsword_steel", "*": "greatsword_iron" }
+    "value": {
+      "*-*bronze": "greatsword_bronze",
+      "*-*iron": "greatsword_iron",
+      "*-meteoricsteel": "greatsword_steel",
+      "*-steel": "greatsword_steel",
+      "*": "greatsword_iron"
+    }
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/sword-great",
     "op": "add",
     "path": "/attributes/MetalVariantCodeByType",
-    "value": { "*-tinbronze": "tinbronze", "*-bismuthbronze": "bismuthbronze", "*-blackbronze": "blackbronze", "*-iron": "iron", "*-meteoriciron": "meteoriciron", "*-steel": "steel", "*": "iron" }
+    "value": {
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-steel": "steel",
+      "*": "iron"
+    }
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/mace",
     "op": "add",
     "path": "/attributes/InSheathVariantCodeByType",
-    "value": { "*-copper": "mace_copper", "*-*bronze": "mace_bronze", "*-*iron": "mace_iron", "*-steel": "mace_steel", "*": "mace_stone" }
+    "value": {
+      "*-copper": "mace_copper",
+      "*-*bronze": "mace_bronze",
+      "*-*iron": "mace_iron",
+      "*-steel": "mace_steel",
+      "*": "mace_stone"
+    }
   },
   {
     "side": "Server",
-    "dependsOn": [{ "modid": "armoryfork" }],
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
     "file": "armory:itemtypes/weapons/mace",
     "op": "add",
     "path": "/attributes/MetalVariantCodeByType",
@@ -146,5 +253,294 @@
       "*-steel": "steel",
       "*": "iron"
     }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/halberd",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": {
+      "*": "halberd"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/halberd",
+    "op": "add",
+    "path": "/attributes/MetalVariantCodeByType",
+    "value": {
+      "*-copper": "copper",
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-meteoricsteel": "steel",
+      "*-steel": "steel",
+      "*": "iron"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/axe-long",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": {
+      "*": "longaxe"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/axe-long",
+    "op": "add",
+    "path": "/attributes/MetalVariantCodeByType",
+    "value": {
+      "*-copper": "copper",
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-meteoricsteel": "steel",
+      "*-steel": "steel",
+      "*": "iron"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/poleaxe",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": {
+      "*": "poleaxe"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/poleaxe",
+    "op": "add",
+    "path": "/attributes/MetalVariantCodeByType",
+    "value": {
+      "*-copper": "copper",
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-meteoricsteel": "steel",
+      "*-steel": "steel",
+      "*": "iron"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/pike",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": {
+      "*": "pike"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/pike",
+    "op": "add",
+    "path": "/attributes/MetalVariantCodeByType",
+    "value": {
+      "*-copper": "copper",
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-meteoricsteel": "steel",
+      "*-steel": "steel",
+      "*": "iron"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/quarterstaff",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": {
+      "*": "quarterstaff"
+    }
+  },
+  {
+    "side": "Server",
+    "dependsOn": [
+      {
+        "modid": "armoryfork"
+      }
+    ],
+    "file": "armory:itemtypes/weapons/quarterstaff",
+    "op": "add",
+    "path": "/attributes/MetalVariantCodeByType",
+    "value": {
+      "*-copper": "copper",
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-meteoricsteel": "steel",
+      "*-steel": "steel",
+      "*": "iron"
+    }
+  },
+  {
+    "side": "Server",
+    "file": "game:itemtypes/tool/spear",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": {
+      "*": "spear"
+    }
+  },
+  {
+    "side": "Server",
+    "file": "game:itemtypes/tool/spear",
+    "op": "add",
+    "path": "/attributes/MetalVariantCodeByType",
+    "value": {
+      "*-copper": "copper",
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-meteoricsteel": "steel",
+      "*-steel": "steel",
+      "*": "iron"
+    }
+  },
+  {
+    "side": "Server",
+    "file": "game:itemtypes/tool/spear",
+    "op": "add",
+    "path": "/attributes/WoodVariantCodeByType",
+    "value": {
+      "*-oak-*": "oak",
+      "*-pine-*": "pine",
+      "*-birch-*": "birch",
+      "*-maple-*": "maple",
+      "*-acacia-*": "acacia",
+      "*-baldcypress-*": "baldcypress",
+      "*-kapok-*": "kapok",
+      "*-larch-*": "larch",
+      "*-redwood-*": "redwood",
+      "*-ebony-*": "ebony",
+      "*-walnut-*": "walnut",
+      "*-purpleheart-*": "purpleheart",
+      "*": "oak"
+    }
+  },
+  {
+    "side": "Server",
+    "file": "game:itemtypes/combatoverhaul/spear",
+    "op": "add",
+    "path": "/attributes/InSheathVariantCodeByType",
+    "value": {
+      "*": "spear"
+    },
+    "dependsOn": [
+      {
+        "modid": "combatoverhaulfork"
+      }
+    ]
+  },
+  {
+    "side": "Server",
+    "file": "game:itemtypes/combatoverhaul/spear",
+    "op": "add",
+    "path": "/attributes/MetalVariantCodeByType",
+    "value": {
+      "*-copper": "copper",
+      "*-tinbronze": "tinbronze",
+      "*-bismuthbronze": "bismuthbronze",
+      "*-blackbronze": "blackbronze",
+      "*-iron": "iron",
+      "*-meteoriciron": "meteoriciron",
+      "*-meteoricsteel": "steel",
+      "*-steel": "steel",
+      "*": "iron"
+    },
+    "dependsOn": [
+      {
+        "modid": "combatoverhaulfork"
+      }
+    ]
+  },
+  {
+    "side": "Server",
+    "file": "game:itemtypes/combatoverhaul/spear",
+    "op": "add",
+    "path": "/attributes/WoodVariantCodeByType",
+    "value": {
+      "*-oak-*": "oak",
+      "*-pine-*": "pine",
+      "*-birch-*": "birch",
+      "*-maple-*": "maple",
+      "*-acacia-*": "acacia",
+      "*-baldcypress-*": "baldcypress",
+      "*-kapok-*": "kapok",
+      "*-larch-*": "larch",
+      "*-redwood-*": "redwood",
+      "*-ebony-*": "ebony",
+      "*-walnut-*": "walnut",
+      "*-purpleheart-*": "purpleheart",
+      "*": "oak"
+    },
+    "dependsOn": [
+      {
+        "modid": "combatoverhaulfork"
+      }
+    ]
   }
 ]
