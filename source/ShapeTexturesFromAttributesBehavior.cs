@@ -320,6 +320,7 @@ public class ShapeTexturesFromAttributes : CollectibleBehavior, IContainedMeshSo
         if (storedShape?.Elements == null || storedShape.Elements.Length == 0) return;
 
         PrefixStoredShapeTextureCodes(storedShape, StoredOverlayTexturePrefix);
+        storedShape.ResolveReferences(_api.World.Logger, storedShapeLocation);
         AddStoredStackTextures(storedStack, storedShape, containerShape, texturePrefixCode, intoDict);
 
         ShapeElement root = StoredStackOverlay.CreateRootElement();
