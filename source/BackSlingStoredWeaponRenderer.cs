@@ -31,9 +31,12 @@ public sealed class BackSlingStoredWeaponRenderConfig
     public int SlotIndex { get; set; } = 0;
     public string AttachmentPart { get; set; } = "UpperTorso";
     public string RenderTarget { get; set; } = "HandTp";
+    public bool ApplyStoredItemTranslation { get; set; } = false;
+    public bool ApplyStoredItemRotation { get; set; } = false;
+    public bool ApplyStoredItemScale { get; set; } = true;
     public ModelTransform Transform { get; set; } = new()
     {
-        Translation = new Vec3f(0.8f, 4.2f, -0.6f),
+        Translation = new Vec3f(0.8f, 4.2f, 0.6f),
         Rotation = new Vec3f(0f, -86f, -55f),
         Origin = new Vec3f(0f, 0f, 0f),
         Scale = 1f
@@ -154,7 +157,7 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
         }
 
         ApplyModelTransform(modelMatrix, config.Transform);
-        ApplyModelTransform(modelMatrix, renderInfo.Transform);
+        ApplyStoredItemTransform(modelMatrix, renderInfo.Transform, config);
 
         BlockPos lightPos = player.Pos.AsBlockPos;
         Vec4f light = _api.World.BlockAccessor.GetLightRGBs(lightPos.X, lightPos.Y, lightPos.Z);
@@ -238,6 +241,33 @@ public sealed class BackSlingStoredWeaponRenderer : IRenderer, IDisposable
             .RotateZ(transform.Rotation.Z * GameMath.DEG2RAD)
             .Scale(scale.X, scale.Y, scale.Z)
             .Translate(-transform.Origin.X / 16f, -transform.Origin.Y / 16f, -transform.Origin.Z / 16f);
+    }
+
+    private static void ApplyStoredItemTransform(Matrixf matrix, ModelTransform transform, BackSlingStoredWeaponRenderConfig config)
+    {
+        FastVec3f scale = transform.ScaleXYZ;
+
+        if (config.ApplyStoredItemTranslation)
+        {
+            matrix.Translate(transform.Translation.X / 16f, transform.Translation.Y / 16f, transform.Translation.Z / 16f);
+        }
+
+        matrix.Translate(transform.Origin.X / 16f, transform.Origin.Y / 16f, transform.Origin.Z / 16f);
+
+        if (config.ApplyStoredItemRotation)
+        {
+            matrix
+                .RotateX(transform.Rotation.X * GameMath.DEG2RAD)
+                .RotateY(transform.Rotation.Y * GameMath.DEG2RAD)
+                .RotateZ(transform.Rotation.Z * GameMath.DEG2RAD);
+        }
+
+        if (config.ApplyStoredItemScale)
+        {
+            matrix.Scale(scale.X, scale.Y, scale.Z);
+        }
+
+        matrix.Translate(-transform.Origin.X / 16f, -transform.Origin.Y / 16f, -transform.Origin.Z / 16f);
     }
 
     private bool TryRenderAnimatable(EntityPlayer player, ItemStack storedStack, ItemRenderInfo renderInfo, Matrixf modelMatrix, Vec4f light, EnumItemRenderTarget target, float dt)
